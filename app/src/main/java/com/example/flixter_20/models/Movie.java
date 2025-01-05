@@ -1,5 +1,7 @@
 package com.example.flixter_20.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +29,8 @@ public class Movie {
     }
 
     public String getPosterPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+        Log.i("Movie",posterPath);
+        return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
     }
 
     public String getTitle() {
