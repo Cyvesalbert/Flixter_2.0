@@ -1,5 +1,6 @@
 package com.example.flixter_20;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         // set a layout Manager on the recyclerview
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
+
+        // Add a built-in divider
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvMovies.getContext(), LinearLayoutManager.VERTICAL);
+        rvMovies.addItemDecoration(dividerItemDecoration);
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(NOW_PLAYING, new JsonHttpResponseHandler() {

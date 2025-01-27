@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.asynchttpclient)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.parceler.api)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
