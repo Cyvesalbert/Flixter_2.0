@@ -16,15 +16,19 @@ public class Movie {
     String title;
     String overview;
     String backdropPath;
-    double voteAverage;
+    double rating;
 
+    // empty contructor needed by the parceler library
+    public Movie(){
+
+    }
 
     public Movie(JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
-        voteAverage = jsonObject.getDouble("vote_average");
+        rating = jsonObject.getDouble("vote_average");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
@@ -51,10 +55,10 @@ public class Movie {
         return overview;
     }
 
-    public void setVoteAverage(double voteAverage) {
-        this.voteAverage = voteAverage;
+    public void rating(double voteAverage) {
+        this.rating = voteAverage;
     }
-    public double getVoteAverage() {
-        return voteAverage;
+    public double rating() {
+        return rating;
     }
 }

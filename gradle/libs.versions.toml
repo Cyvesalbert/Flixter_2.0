@@ -16,6 +16,7 @@ compiler = "5.0.0-rc01"
 asynchttpclient = "2.2.0"
 recyclerview = "1.3.2"
 parcelerApi = "1.1.13"
+parceler = "1.1.13"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +41,7 @@ compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref
 asynchttpclient = { group = "com.codepath.libraries", name = "asynchttpclient", version.ref = "asynchttpclient" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 parceler-api = { group = "org.parceler", name = "parceler-api", version.ref = "parcelerApi" }
+parceler = { group = "org.parceler", name = "parceler", version.ref = "parceler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

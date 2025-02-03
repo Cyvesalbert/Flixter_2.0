@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.asynchttpclient)
     implementation(libs.androidx.recyclerview)
     implementation(libs.parceler.api)
+    implementation(libs.parceler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

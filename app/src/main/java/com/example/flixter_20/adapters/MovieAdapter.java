@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +59,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        RelativeLayout container;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
@@ -67,8 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
-            // add this as the itemView's OnClickListener
-            itemView.setOnClickListener(this);
+            container = itemView.findViewById(R.id.container);
         }
 
         public void bind(Movie movie) {
@@ -85,25 +87,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
 
             Glide.with(context).load(imageUrl).into(ivPoster);
+
+            //1- register click listener on the whole row
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //2- navigate to a new activity on tap
+                    Intent i = new Intent(context, MovieDetailsActivity.class);
+                    i.putExtra("movie", movie.getTitle());
+                    context.startActivity(i);
+
+                }
+            });
         }
 
-        // when the user clicks on a row, show MovieDetailsActivity for the selected movie
-        @Override
-        public void onClick(View view) {
-            // gets item position
-            int position = getAdapterPosition();
-            // make sure the position is valid, i.e. actually exists in the view
-            if (position != RecyclerView.NO_POSITION) {
-                // get the movie at the position, this won't work if the class is static
-                Movie movie = movies.get(position);
-                // create intent for the new activity
-                Intent intent = new Intent(context, MovieDetailsActivity.class);
-                // serialize the movie using parceler, use its short name as a key
-                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
-                // show the activity
-                context.startActivity(intent);
-
-            }
-        }
     }
 }
