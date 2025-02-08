@@ -3,32 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.AppCompat.RatingBar"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="com.example.flixter_20.MovieDetailsActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.flixter_20.MovieDetailsActivity"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="34sp"
         tools:text="It Chapter two" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        style="@android:style/Widget.Holo.RatingBar.Indicator"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
+        style="@android:style/Widget.Material.Light.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:indeterminateDrawable="@android:drawable/btn_star"
         android:indeterminateOnly="false"
         android:isIndicator="true"
-        android:progressDrawable="@android:drawable/btn_star" />
+        android:numStars="10"
+        android:progressDrawable="@android:drawable/btn_star"
+        android:rating="0.5" />
 
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:text="27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from derry." />
 </LinearLayout>

@@ -1,27 +1,21 @@
 package com.example.flixter_20.models;
-
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.parceler.Parcel;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Parcel // annotation indicates class is Parcelable
-public class Movie {
-    String posterPath;
-    String title;
-    String overview;
-    String backdropPath;
-    double rating;
+public class Movie implements Parcelable {
+    private String posterPath;
+    private String title;
+    private String overview;
+    private String backdropPath;
+    private double rating;
 
-    // empty contructor needed by the parceler library
-    public Movie(){
-
-    }
+    public Movie() {} // Empty constructor
 
     public Movie(JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
@@ -31,22 +25,57 @@ public class Movie {
         rating = jsonObject.getDouble("vote_average");
     }
 
+    // Parcelable Constructor
+    protected Movie(Parcel in) {
+        posterPath = in.readString();
+        title = in.readString();
+        overview = in.readString();
+        backdropPath = in.readString();
+        rating = in.readDouble();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterPath);
+        dest.writeString(title);
+        dest.writeString(overview);
+        dest.writeString(backdropPath);
+        dest.writeDouble(rating);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
         List<Movie> movies = new ArrayList<>();
-        for (int i = 0; i < movieJsonArray.length(); i++){
+        for (int i = 0; i < movieJsonArray.length(); i++) {
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
         return movies;
     }
 
     public String getPosterPath() {
-        Log.i("Movie",posterPath);
         return String.format("https://image.tmdb.org/t/p/w342%s", posterPath);
     }
 
-    public String getBackdropPath(){
+    public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342%s", backdropPath);
     }
+
     public String getTitle() {
         return title;
     }
@@ -55,10 +84,7 @@ public class Movie {
         return overview;
     }
 
-    public void rating(double voteAverage) {
-        this.rating = voteAverage;
-    }
-    public double rating() {
+    public double getRating() {
         return rating;
     }
 }

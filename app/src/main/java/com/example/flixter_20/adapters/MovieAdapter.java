@@ -92,10 +92,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //2- navigate to a new activity on tap
-                    Intent i = new Intent(context, MovieDetailsActivity.class);
-                    i.putExtra("movie", movie.getTitle());
-                    context.startActivity(i);
+                    if (movie != null) {
+                        Log.d("MovieClick", "Clicked on movie: " + movie.getTitle());
+                        Log.d("MovieClick", "Attempting to wrap movie...");
+
+                        try {
+                            Intent i = new Intent(context, MovieDetailsActivity.class);
+                            i.putExtra("movie", movie); // Wrap object
+
+                            Log.d("MovieClick", "Wrapped movie successfully, starting activity...");
+                            context.startActivity(i);
+                        } catch (Exception e) {
+                            Log.e("MovieClick", "Error wrapping movie: " + e.getMessage(), e);
+                        }
+                    } else {
+                        Log.e("MovieClick", "Movie object is NULL before wrapping!");
+                    }
 
                 }
             });
