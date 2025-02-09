@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie implements Parcelable {
+    private String movieId;
     private String posterPath;
     private String title;
     private String overview;
@@ -23,6 +24,7 @@ public class Movie implements Parcelable {
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
         rating = jsonObject.getDouble("vote_average");
+        movieId = jsonObject.getString("id");
     }
 
     // Parcelable Constructor
@@ -32,6 +34,8 @@ public class Movie implements Parcelable {
         overview = in.readString();
         backdropPath = in.readString();
         rating = in.readDouble();
+        movieId = in.readString();
+
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -53,6 +57,7 @@ public class Movie implements Parcelable {
         dest.writeString(overview);
         dest.writeString(backdropPath);
         dest.writeDouble(rating);
+        dest.writeString(movieId);
     }
 
     @Override
@@ -74,6 +79,10 @@ public class Movie implements Parcelable {
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w342%s", backdropPath);
+    }
+
+    public String getMovieId() {
+        return movieId;
     }
 
     public String getTitle() {

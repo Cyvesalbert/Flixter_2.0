@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.AppCompat.RatingBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.flixter_20.MovieDetailsActivity"
-    android:orientation="vertical">
+    android:layout_height="250dp"
+    android:orientation="vertical"
+    tools:context="com.example.flixter_20.MovieDetailsActivity">
 
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="131dp" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -32,7 +37,7 @@
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="121dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         tools:text="27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from derry." />
 </LinearLayout>
